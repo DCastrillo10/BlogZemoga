@@ -1,0 +1,91 @@
+﻿@model BlogZemoga.Models.Post
+
+@{
+    ViewData["Title"] = "MyPost";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>My Post</h1>
+
+<div class="p-4 border rounded bg-light">
+    <table id="tblData" class="table table-bordered table-responsive-xl">
+        <thead class="thead-dark">
+            <tr class="table-info">
+                <th>No</th>
+                <th>Post</th>
+                <th>Author</th>
+                <th>Status</th>
+                <th>Status Date</th>
+                <th></th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<div class="row" style="width:100%;">
+    <div class="col-2 text-right">
+        <button type="button" onclick="limpiar()" class="btn btn-info form-control" data-toggle="modal" data-target="#myModal">New Post</button>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+            <form method="post" enctype="multipart/form-data">
+                <div class="modal-header">
+                    <h2 class="modal-title text-primary text-center">New Post</h2>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div style="padding-left:15%; padding-right:15%; padding-bottom:30px;">
+                        <div class="row p-3 border-0">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        </div>
+
+                        <input type="hidden" id="postId" asp-for="Id" />
+                        <input type="hidden" id="postUserId" asp-for="UserId"  />
+                        <input type="hidden" id="postStatus" asp-for="Status" />
+                        <input type="hidden" id="postRegisterDate" asp-for="RegisterDate" asp-format="{0:dd-MM-yyyy }" />
+                        <input type="hidden" id="postApprovalDate" asp-for="ApprovalDate" asp-format="{0:dd-MM-yyyy }"/>
+
+                        <div class="form-group">
+                            <label>Post</label>
+                            <textarea asp-for="Posts" id="postsPost" class="form-control" placeholder="Write your post here..!!"></textarea>
+                            <span asp-validation-for="Posts" class="text-danger"></span>
+                        </div>
+                  
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Save Post</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/MyPost.js"></script>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

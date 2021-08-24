@@ -1,0 +1,62 @@
+﻿@model IEnumerable<BlogZemoga.Models.Post>
+@{
+    ViewData["Title"] = "PostPending";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>PostPending</h1>
+
+<div class="p-4 border rounded bg-light">
+    <table id="tblData" class="table table-bordered table-responsive-xl">
+        <thead class="thead-dark">
+            <tr class="table-info">
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Posts)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ApplicationUser.UserName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RegisterDate)
+                </th>
+                <th>
+                    Acciones
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelitem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelitem => item.Posts)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelitem => item.ApplicationUser.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelitem => item.Status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelitem => item.RegisterDate)
+                    </td>
+                    <td>
+                        <input type="hidden" asp-for="@item.Id" />
+                        <input type="button" value="Approved" onclick="location.href='@Url.Action("Approved","Post", new { id=item.Id } )'" class="btn btn-primary" />
+                        <input type="button" value="Reject" onclick="location.href='@Url.Action("Reject","Post", new { id=item.Id } )'" class="btn btn-warning" />
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

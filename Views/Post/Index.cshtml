@@ -1,0 +1,62 @@
+﻿@model BlogZemoga.Models.CommentVM
+
+@{
+    ViewData["Title"] = "Zemoga";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Post List Zemoga</h1>
+
+<div class="p-4 border rounded bg-light">
+    <table id="tblData" class="table table-bordered table-responsive-xl">
+        <thead class="thead-dark">
+            <tr class="table-info">
+                <th>No</th>
+                <th>Post</th>
+                <th>Author</th>
+                <th>Approval Date</th>
+                <th>Comments</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+            <form method="post" enctype="multipart/form-data">
+                <div class="modal-header">
+                    <h2 class="modal-title text-primary text-center">New Comment</h2>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div style="padding-left:15%; padding-right:15%; padding-bottom:30px;">
+                        <div class="row p-3 border-0">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        </div>
+
+                        <input type="hidden" id="postId" asp-for="Post.Id" />
+                        <input type="hidden" id="commentpostId" asp-for="Comment.PostId" />
+                        <input type="hidden" id="commentStatus" asp-for="Comment.Status" />
+                        <input type="hidden" id="commentRegDate" asp-for="Comment.RegisterDate" />
+
+                        <div class="form-group">
+                            <label>Comment </label>
+                            <textarea asp-for="Comment.Comments" id="commentComments" class="form-control" placeholder="Write your comment here..!!"></textarea>
+                            <span asp-validation-for="Comment.Comments" class="text-danger"></span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Save Comment</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/Post.js"></script>
+}

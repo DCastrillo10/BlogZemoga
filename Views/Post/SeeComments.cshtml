@@ -1,0 +1,55 @@
+﻿@model IEnumerable<BlogZemoga.Models.Comment>
+
+@{
+    ViewData["Title"] = "SeeComments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>SeeComments</h1>
+
+<div class="p-4 border rounded bg-light">
+    <table id="tblData" class="table table-bordered table-responsive-xl">
+        <thead class="thead-dark">
+            <tr class="table-info">
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PostId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Comments)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RegisterDate)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelitem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelitem => item.PostId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelitem => item.Comments)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelitem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelitem => item.RegisterDate)
+                </td>
+            </tr>
+            }
+            </tbody>
+        </table>
+</div>
+
